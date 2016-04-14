@@ -14,6 +14,7 @@
 #ifndef __ONEWIRE_H__
 #define __ONEWIRE_H__
 
+#include <stdio.h>
 #include <avr/io.h>
 
 #define MAXDEVICES 10
@@ -54,55 +55,50 @@
 /*
  * Reset transfer
  */
-unsigned char onewire_reset(void);
+uint8_t onewire_reset(void);
 
 /**
  * Sending bit to device
  * @bit: sending bit
  */
-void onewire_write_bit(unsigned char bit);
+void onewire_write_bit(uint8_t bit);
 
 /**
  * Reading bit from device
  * 
  * returns: readed bit.
  */
-unsigned char onewire_read_bit(void);
+uint8_t onewire_read_bit(void);
 
 /**
  * Sending byte to device
  * @byte: sending byte
  */
-unsigned char onewire_write_byte(unsigned char byte);
+uint8_t onewire_write_byte(uint8_t byte);
 
 /*
  * Start reading byte from device
  */
 #define onewire_read_byte() onewire_write_byte(0xFF)
 
-/* 
- * Helper function for find ROM
- */
-char onewire_search_rom(unsigned char diff, unsigned char *id);
-
 /**
  * Finding ROM of device
  * @diff:
  * @id: returns ID of finded device
  */
-void onewire_find_rom(unsigned char *diff, unsigned char id[]);
+void onewire_find_rom(uint8_t *diff, uint8_t id[]);
 
 /**
  * Reading ROM from device
  * @buffer: ROM
  */
-unsigned char onewire_read_rom(unsigned char *buffer);
+uint8_t onewire_read_rom(uint8_t *buffer);
 
 /**
  * Compare ROMs
  * @rom: new ROM
  */
-unsigned char onewire_match_rom(unsigned char *rom);
+uint8_t onewire_match_rom(uint8_t *rom);
 
 
 #endif
